@@ -1,0 +1,25 @@
+## Interview Questions
+
+Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
+
+1. What is the DOM?
+
+    ▶ The Document Object Model is an interface our code can interact with to manipulate a page.
+
+2. What is an event?
+
+    ▶ An event is a user interaction on the page, there are many different event types.
+
+3. What is an event listener?
+
+    ▶ An event listener is a way to schedule a function/action to trigger when a user interacts with the page in a certain way (the event).
+
+4. Why would we convert a NodeList into an Array?
+
+    ▶ We would covert a NodeList into an array in order to use more advanced array methods. NodeLists only have access to .forEach.
+
+5. What is a component?
+
+    ▶ A component is a modular piece of code consisting of either HTML, CSS, or JavaScript, they are reusable. That means you can code once and then apply that code over and over again.
+
+You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
