@@ -15,13 +15,26 @@ console.log(axios.get('https://lambda-times-api.herokuapp.com/topics'));
 
 function createTab(topic) {
     const tab = document.createElement('div');
-    tab.classList.add('tab');
+    tab.classList.add('tab', topic);
     tab.textContent = topic;
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(item =>{
+            item.classList.remove('active-tab');
+        });
+        tab.classList.add('active-tab');
+        });
+    tab.addEventListener('click', event => {
+        document.querySelectorAll('div.card').forEach(item =>{
+            if(!item.classList.contains(topic)){  /* //Does not work for node.js because article topic and tab are different node vs node.js... my code is looking for 'node.js', my article topic says 'node */
+                item.style.display = 'none';
+            }else {item.style.display = null}
+    })})
     return tab;
 }
 
 //Stretch below
 document.querySelector('div.topics').appendChild(createTab('all'));
+document.querySelector('div.tab.all').classList.add('active-tab');
 //stretch above
 
 

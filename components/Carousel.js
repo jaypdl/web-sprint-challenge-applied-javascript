@@ -23,47 +23,100 @@
   </div>
 */
 
-const caroImages = [
+// const caroImages = [
+//   "https://tk-assets.lambdaschool.com/ba687af4-3a1e-43d7-87b2-f30453264c9d_mountains.jpeg",
+//   "https://tk-assets.lambdaschool.com/8aa075b0-67cf-47ce-9a7f-8cc9d754675d_computer.jpeg",
+//   "https://tk-assets.lambdaschool.com/5b7441c6-6e4b-4feb-a4ec-8dd2eb76238a_trees.jpeg",
+//   "https://tk-assets.lambdaschool.com/0b770382-d0eb-4465-8bf2-692a79fcda71_turntable.jpeg"
+// ]
+
+// function createCarousel(){
+//   const carouselContainer = document.querySelector('.carousel-container');
+
+//   //creating elements
+//   const carousel = document.createElement('div');
+//   const left = document.createElement('div');
+//   const right = document.createElement('div');
+
+//   const imageEls=[]
+
+
+//   //create hierarchy
+//   carousel.appendChild(left);
+//   carousel.appendChild(right);
+
+//   //add classes
+//   carousel.classList.add('carousel');
+//   left.classList.add('left-button');
+//   right.classList.add('right-button');
+ 
+
+//   //adding content
+//   left.textContent = '<'
+//   right.textContent = '>'
+//   caroImages.forEach(item => {
+//     let image = document.createElement('img');
+//     image.src = item;
+//     carousel.appendChild(image);
+//     imageEls.push(image);
+  
+//     carouselContainer.appendChild(carousel)
+//   })
+//   let currentImageIndex = 0;
+
+// }
+// createCarousel();
+
+
+
+const images = [
   "https://tk-assets.lambdaschool.com/ba687af4-3a1e-43d7-87b2-f30453264c9d_mountains.jpeg",
   "https://tk-assets.lambdaschool.com/8aa075b0-67cf-47ce-9a7f-8cc9d754675d_computer.jpeg",
   "https://tk-assets.lambdaschool.com/5b7441c6-6e4b-4feb-a4ec-8dd2eb76238a_trees.jpeg",
   "https://tk-assets.lambdaschool.com/0b770382-d0eb-4465-8bf2-692a79fcda71_turntable.jpeg"
 ]
-
-function createCarousel(){
-  //creating elements
-  const carousel = document.createElement('div');
-  const left = document.createElement('div');
-  const image1 = document.createElement('img');
-  const image2 = document.createElement('img');
-  const image3 = document.createElement('img');
-  const image4 = document.createElement('img');
-  const right = document.createElement('div');
-
-  //create hierarchy
-  carousel.appendChild(left);
-  carousel.appendChild(image1);
-  carousel.appendChild(image2);
-  carousel.appendChild(image3);
-  carousel.appendChild(image4);
-  carousel.appendChild(right);
-
-  //add classes
-  carousel.classList.add('carousel');
-  left.classList.add('left-button');
-  right.classList.add('right-button');
- 
-
-  //adding content
-  left.textContent = '<'
-  image1.src = caroImages[0]
-  image2.src = caroImages[1]
-  image3.src = caroImages[2]
-  image4.src = caroImages[3]
-  right.textContent = '>'
-
-
-  return carousel;
+function carouselMaker() {
+  const carouselContainer = document.querySelector('.carousel-container')
+  const carousel = document.createElement('div')
+  const leftButton = document.createElement('div')
+  const rightButton = document.createElement('div')
+  const imageElements = []
+  carousel.classList.add('carousel')
+  leftButton.classList.add('left-button')
+  rightButton.classList.add('right-button')
+  //carousel.innerText = 'Carousel'
+  // leftButton.textContent = 'Left Button'
+  // rightButton.innerText = 'right Button'
+  carousel.appendChild(leftButton)
+  carousel.appendChild(rightButton)
+  images.forEach(item => {
+    let image = document.createElement('img')
+    image.src = item
+    carousel.appendChild(image)
+    imageElements.push(image);
+    carouselContainer.appendChild(carousel)
+  })
+  let currentImageIndex = 0;
+  function hideCarouselImages() {
+    imageElements.forEach((image) => image.style.display = 'none')
+  }
+  leftButton.addEventListener('click', function() {
+    hideCarouselImages()
+    if (currentImageIndex - 1 >= 0) {
+      imageElements[currentImageIndex--].style.display = 'block';
+    } else {
+      currentImageIndex = imageElements.length - 1;
+      imageElements[currentImageIndex].style.display = 'block';
+    }
+  })
+  rightButton.addEventListener('click', function() {
+    hideCarouselImages()
+    if (currentImageIndex + 1 <= imageElements.length) {
+      imageElements[currentImageIndex++].style.display = 'block';
+    } else {
+      currentImageIndex = 0;
+      imageElements[currentImageIndex].style.display = 'block';
+    }
+  })
 }
-console.log(createCarousel());
-document.querySelector('div.carousel-container').appendChild(createCarousel());
+carouselMaker()
