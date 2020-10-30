@@ -20,6 +20,11 @@ function createTab(topic) {
     return tab;
 }
 
+//Stretch below
+document.querySelector('div.topics').appendChild(createTab('all'));
+//stretch above
+
+
 axios
     .get('https://lambda-times-api.herokuapp.com/topics')
     .then(res =>{

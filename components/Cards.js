@@ -22,7 +22,7 @@
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
 
-function cardMaker({ headline,authorName,authorPhoto }) {
+function cardMaker({ headline,authorName,authorPhoto }, topic) {
     //create elements
     const card = document.createElement('div');
     const artHead = document.createElement('div');
@@ -39,7 +39,7 @@ function cardMaker({ headline,authorName,authorPhoto }) {
     imgCont.appendChild(authImg);
 
     //adding classes
-    card.classList.add('card');
+    card.classList.add('card','all',topic);
     artHead.classList.add('headline');
     authCont.classList.add('author');
     imgCont.classList.add('img-container');
@@ -61,7 +61,7 @@ axios
         for (let key in res.data.articles){
         res.data.articles[key].forEach(category => {
             document.querySelector('div.cards-container')
-                    .appendChild(cardMaker(category));
+                    .appendChild(cardMaker(category,key));
         })}
     })
     .catch(err => {
